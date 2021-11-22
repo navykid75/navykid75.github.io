@@ -1,7 +1,6 @@
-// Arduino pin assignment
+
 #include <Servo.h>
 #define PIN_SERVO 10
-
 #define PIN_IR A0
 #define _DIST_ALPHA 0.3 // ema 필터 상수
 
@@ -37,8 +36,8 @@ float ir_distance(void){ // return value unit: mm
 }
 
 void loop() {
-  myservo.attach(PIN_SERVO); 
 //  myservo.writeMicroseconds(1700);
+  myservo.attach(PIN_SERVO);
   float raw_dist = ir_distance();
   float dist_cali = 100 + 300.0 / (b - a) * (raw_dist - a);
   
@@ -49,9 +48,9 @@ void loop() {
     dist_ema = alpha * dist_cali + (1-alpha) * dist_ema;
   }
   
-  Serial.print("min:0,max:500,dist_cali:");
+  Serial.print("min:0 max:500 dist_cali: ");
   Serial.print(dist_cali);
-  Serial.print(",dist_ema:");
+  Serial.print(" dist_ema:");
   Serial.println(dist_ema);
   
   if (dist_ema > 255){
