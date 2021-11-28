@@ -1,5 +1,5 @@
-# navykid75.github.io
-# README MD
+
+# README.md
 
 __먼저 자신만의 github 계정에서 자신의 개인 repository를 만듭니다.__
 __그 다음 local repository와의 연동을 위해 우분투 터미널에 git clone <repo_name><path>를 입력합니다.__
