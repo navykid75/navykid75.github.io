@@ -47,8 +47,8 @@
 
 
 // 10cm 40cm 일때 읽는 값
-#define A  104                   
-#define B  297                   
+#define a  104                   
+#define b  297                   
 
 //////////////////////
 // global variables //
@@ -82,7 +82,7 @@ float error_curr, error_prev, control, pterm, dterm, iterm;
 float calcDistance(short value){ // return value unit: mm
   float volt = float(analogRead(PIN_IR));
   float val = ((6762.0/(volt-9.0))-4.0) * 10.0; 
-  return 100.0 + 300.0 / (B - A) * (val - A);  // 실제 거리 
+  return 100.0 + 300.0 / (b - a) * (val - a);  // 실제 거리 
 }
 
 MedianFilter<calcDistance> filter;
@@ -182,7 +182,6 @@ void loop() {
     duty_target = _DUTY_NEU + control;
     
   // keep duty_target value within the range of [_DUTY_MIN, _DUTY_MAX]
-  //duty_target이 _DUTY_MIN, _DUTY_MAX의 범위 안에 있도록 제어
     if(duty_target < _DUTY_MIN) { duty_target = _DUTY_MIN; } 
     else if(duty_target > _DUTY_MAX) { duty_target = _DUTY_MAX; }
 
